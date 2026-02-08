@@ -4,6 +4,13 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.10</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>com.example</groupId>
     <artifactId>scatter-gather</artifactId>
     <packaging>pom</packaging>
@@ -15,4 +22,8 @@
         <module>worker</module>
         <module>gatherer</module>
     </modules>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
 </project>
