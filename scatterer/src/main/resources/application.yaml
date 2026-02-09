@@ -14,3 +14,6 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     listener:
       ack-mode: manual
+
+scatter:
+  batchSize: 10

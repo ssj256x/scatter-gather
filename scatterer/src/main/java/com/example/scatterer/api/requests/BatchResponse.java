@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Getter
 @Builder
 @ToString
 @AllArgsConstructor
 public class BatchResponse {
-    private final String status;
-    private final Integer total;
-    private final Integer passed;
-    private final Integer failed;
+    private final UUID requestId ;
+    private final String activity;
 }

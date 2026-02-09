@@ -13,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 public class BatchRequest {
     private final String activity;
-    private final List<Integer> ids;
+    private final List<String> ids;
 }
