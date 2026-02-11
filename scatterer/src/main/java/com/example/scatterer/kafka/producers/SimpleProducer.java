@@ -1,9 +1,9 @@
 package com.example.scatterer.kafka.producers;
 
+import com.example.models.api.BatchRequest;
+import com.example.models.events.BatchEvent;
 import com.example.scatterer.Constants;
-import com.example.scatterer.api.requests.BatchRequest;
 import com.example.scatterer.models.dto.BatchRequestDTO;
-import com.example.scatterer.models.event.BatchRequestEvent;
 import com.example.scatterer.services.BatchService;
 import com.example.scatterer.services.RandomIdService;
 import com.example.scatterer.util.JsonUtil;
@@ -30,7 +30,7 @@ public class SimpleProducer {
             var requestId = "REQ_" + UUID.randomUUID();
             var batchId = requestId + ":" + randomIdService.generateRandomId();
 
-            var event = BatchRequestEvent.builder()
+            var event = BatchEvent.builder()
                     .eventId(eventId)
                     .requestId(requestId)
                     .batchId(batchId)

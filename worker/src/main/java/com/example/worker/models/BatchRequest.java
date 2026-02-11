@@ -1,16 +1,14 @@
-package com.example.scatterer.api.requests;
+package com.example.worker.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
 
 @Getter
-@Builder
 @ToString
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BatchRequest {
     private final String activity;
     private final List<String> ids;
