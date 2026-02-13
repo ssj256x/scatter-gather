@@ -1,6 +1,6 @@
 package com.example.worker.services;
 
-import com.example.worker.models.BatchRequest;
+import com.example.models.api.BatchRequest;
 import com.example.worker.models.BatchResult;
 import com.example.worker.models.Failure;
 import com.example.worker.util.RandomErrorUtil;

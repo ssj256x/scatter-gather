@@ -2,11 +2,11 @@ package com.example.scatterer.kafka.producers;
 
 import com.example.models.api.BatchRequest;
 import com.example.models.events.BatchEvent;
+import com.example.models.utils.JsonUtil;
 import com.example.scatterer.Constants;
 import com.example.scatterer.models.dto.BatchRequestDTO;
 import com.example.scatterer.services.BatchService;
 import com.example.scatterer.services.RandomIdService;
-import com.example.scatterer.util.JsonUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
