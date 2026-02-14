@@ -1,7 +1,5 @@
 package com.example.models.utils;
 
-import com.example.models.api.BatchRequest;
-import com.example.models.events.BatchEvent;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;

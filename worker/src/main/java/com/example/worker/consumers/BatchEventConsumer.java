@@ -50,11 +50,11 @@ public class BatchEventConsumer {
 
         BatchEvent<BatchResult> batchResultEvent =  BatchEvent.<BatchResult>builder()
                 .eventId("EV_" + UUID.randomUUID())
+                .eventType("BATCH_RESULT")
                 .requestId(batchRequestEvent.getRequestId())
                 .batchId(batchRequestEvent.getBatchId())
                 .batchNumber(batchRequestEvent.getBatchNumber())
                 .totalBatches(batchRequestEvent.getTotalBatches())
-                .eventType("BATCH_RESULT")
                 .timestamp(new Timestamp(System.currentTimeMillis()))
                 .payload(batchResult)
                 .build();
@@ -64,7 +64,7 @@ public class BatchEventConsumer {
         kafkaTemplate.send(
                 Constants.BATCH_RESPONSE_TOPIC,
                 batchResultEvent.getRequestId(),
-                JsonUtil.toJson(batchRequestEvent)
+                JsonUtil.toJson(batchResultEvent)
         );
 
         ack.acknowledge();

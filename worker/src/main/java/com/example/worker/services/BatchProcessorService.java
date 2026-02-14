@@ -46,6 +46,6 @@ public class BatchProcessorService {
     }
 
     private static boolean random80True() {
-        return ThreadLocalRandom.current().nextDouble() < 0.8;
+        return ThreadLocalRandom.current().nextDouble() > 0.8;
     }
 }

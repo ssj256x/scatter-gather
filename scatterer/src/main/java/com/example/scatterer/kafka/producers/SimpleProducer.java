@@ -13,7 +13,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -26,12 +25,13 @@ public class SimpleProducer {
         var batches = batchService.createBatches(batchRequest.getIds());
 
         for (int i = 0; i < batches.size(); i++) {
-            var eventId = "EV_" + UUID.randomUUID();
-            var requestId = "REQ_" + UUID.randomUUID();
-            var batchId = requestId + ":" + randomIdService.generateRandomId();
+            var eventId = "EV_" + randomIdService.generateRandomId();
+            var requestId = "REQ_" + randomIdService.generateRandomId();
+            var batchId = "BCH_" + randomIdService.generateRandomId();
 
             var event = BatchEvent.builder()
                     .eventId(eventId)
+                    .eventType("BATCH_REQUEST")
                     .requestId(requestId)
                     .batchId(batchId)
                     .batchNumber(i + 1)
@@ -43,7 +43,7 @@ public class SimpleProducer {
             kafkaTemplate.send(
                     new ProducerRecord<>(
                             Constants.TOPIC_NAME,
-                            batchId,
+                            requestId + ":" + batchId,
                             JsonUtil.toJson(event)
                     )
             );
