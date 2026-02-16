@@ -57,9 +57,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<image>
-						<runImage>paketobuildpacks/ubuntu-noble-run:latest</runImage>
-					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -70,5 +67,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
