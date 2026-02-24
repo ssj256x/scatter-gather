@@ -1,14 +1,13 @@
-package com.example.worker.models;
+package com.example.models.api;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Builder
 @ToString
+@AllArgsConstructor
 public class BatchResult {
     private final Integer total;
     private final Integer passed;

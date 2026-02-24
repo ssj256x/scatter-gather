@@ -1,10 +1,10 @@
 package com.example.worker.consumers;
 
 import com.example.models.api.BatchRequest;
+import com.example.models.api.BatchResult;
 import com.example.models.utils.JsonUtil;
 import com.example.worker.Constants;
 import com.example.models.events.BatchEvent;
-import com.example.worker.models.BatchResult;
 import com.example.worker.services.BatchProcessorService;
 import com.fasterxml.jackson.databind.JavaType;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ import java.util.UUID;
 public class BatchEventConsumer {
 
     private final BatchProcessorService batchProcessorService;
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, BatchEvent<BatchResult>> kafkaTemplate;
 
     @KafkaListener(
             topics = Constants.TOPIC_NAME,
@@ -48,7 +48,7 @@ public class BatchEventConsumer {
 
         BatchResult batchResult = batchProcessorService.processBatch(batchRequestEvent.getPayload());
 
-        BatchEvent<BatchResult> batchResultEvent =  BatchEvent.<BatchResult>builder()
+        BatchEvent<BatchResult> batchResultEvent = BatchEvent.<BatchResult>builder()
                 .eventId("EV_" + UUID.randomUUID())
                 .eventType("BATCH_RESULT")
                 .requestId(batchRequestEvent.getRequestId())
@@ -64,7 +64,7 @@ public class BatchEventConsumer {
         kafkaTemplate.send(
                 Constants.BATCH_RESPONSE_TOPIC,
                 batchResultEvent.getRequestId(),
-                JsonUtil.toJson(batchResultEvent)
+                batchResultEvent
         );
 
         ack.acknowledge();

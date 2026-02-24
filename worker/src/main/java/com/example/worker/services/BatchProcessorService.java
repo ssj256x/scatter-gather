@@ -1,8 +1,8 @@
 package com.example.worker.services;
 
 import com.example.models.api.BatchRequest;
-import com.example.worker.models.BatchResult;
-import com.example.worker.models.Failure;
+import com.example.models.api.BatchResult;
+import com.example.models.api.Failure;
 import com.example.worker.util.RandomErrorUtil;
 import io.vavr.control.Either;
 import org.springframework.stereotype.Service;

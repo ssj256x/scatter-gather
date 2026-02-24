@@ -23,10 +23,10 @@ public class SimpleProducer {
 
     public void publish(BatchRequestDTO batchRequest) {
         var batches = batchService.createBatches(batchRequest.getIds());
+        var requestId = "REQ_" + randomIdService.generateRandomId();
 
         for (int i = 0; i < batches.size(); i++) {
             var eventId = "EV_" + randomIdService.generateRandomId();
-            var requestId = "REQ_" + randomIdService.generateRandomId();
             var batchId = "BCH_" + randomIdService.generateRandomId();
 
             var event = BatchEvent.builder()

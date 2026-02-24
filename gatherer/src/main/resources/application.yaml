@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: gatherer
+  kafka:
+    streams:
+      application-id: gatherer
+      bootstrap-servers: kafka:9092
+      properties:
+        processing.guarantee: exactly_once_v2
+        default:
+          key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+          value.serde: org.springframework.kafka.support.serializer.JsonSerde
+          deserialization.exception.handler: org.apache.kafka.streams.errors.LogAndContinueExceptionHandler
