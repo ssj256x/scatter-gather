@@ -1,5 +1,4 @@
 services:
-
   # =============================
   # ZOOKEEPER
   # =============================
@@ -112,7 +111,7 @@ services:
   otel-collector:
     image: otel/opentelemetry-collector:0.95.0
     container_name: otel-collector
-    command: ["--config=/etc/otel-collector-config.yaml"]
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
@@ -130,7 +129,7 @@ services:
   tempo:
     image: grafana/tempo:2.4.0
     container_name: tempo
-    command: ["-config.file=/etc/tempo.yaml"]
+    command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./tempo.yaml:/etc/tempo.yaml
     ports:

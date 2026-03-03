@@ -61,6 +61,8 @@ public class BatchEventConsumer {
 
         log.info("Publishing Batch Result : {}", batchResultEvent);
 
+        // TODO : Add sleep to simulate work
+
         kafkaTemplate.send(
                 Constants.BATCH_RESPONSE_TOPIC,
                 batchResultEvent.getRequestId(),
