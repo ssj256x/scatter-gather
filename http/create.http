@@ -1,0 +1,15 @@
+# curl --location 'http://localhost:8081/create?random-ids=true&size=45'
+#      --header 'Content-Type: application/json'
+#      --data '{
+#          "activity": "RE_INDEX"
+#      }'
+
+@baseUrl = http://localhost:8081
+
+POST {{baseUrl}}/create?random-ids=true&size=45
+Content-Type: application/json
+Accept: application/json
+
+{
+  "activity": "RE_INDEX"
+}
