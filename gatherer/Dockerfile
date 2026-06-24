@@ -1,20 +1,45 @@
-# -------- Build Stage --------
-FROM maven:3.9.9-eclipse-temurin-21 AS builder
-
+# ==========================================
+# STAGE 1: Build & Compile (Monorepo Context)
+# ==========================================
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /build
 
-# Copy entire project (important for multimodule)
-COPY .. .
+# 1. Copy the parent POM and the POMs of the required modules
+COPY pom.xml .
+COPY common/pom.xml ./common/
+COPY worker/pom.xml ./worker/
+COPY scatterer/pom.xml ./scatterer/
+COPY gatherer/pom.xml ./gatherer/
+COPY observability/pom.xml ./observability/
 
-# Build only gatherer and its dependencies
-RUN mvn -pl gatherer -am clean package -DskipTests
+# 2. Go offline to download and cache external dependencies ahead of copying source code
+RUN mvn dependency:go-offline -B
 
+# 3. Copy the actual source files for the shared library and the target module
+COPY common/src ./common/src
+COPY gatherer/src ./gatherer/src
 
-# -------- Runtime Stage --------
-FROM eclipse-temurin:21-jdk-alpine
+# 4. Compile the common module and the worker module using the Maven reactor
+RUN mvn -pl gatherer -am clean package -DskipTests -Dmaven.javadoc.skip=true
 
+# ==========================================
+# STAGE 2: Ultra-Lean Runtime Execution
+# ==========================================
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-COPY --from=builder /build/gatherer/target/*.jar app.jar
+# Create a non-privileged system user for runtime safety
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy only the compiled fat JAR from the builder stage
+COPY --from=builder --chown=spring:spring /build/gatherer/target/*.jar app.jar
+
+# Apply the leanest JVM footprint options block for your Pi 5 RAM limits
+ENV JAVA_OPTS="-XX:+UseSerialGC \
+               -XX:MaxRAMPercentage=75.0 \
+               -Xss256k \
+               -XX:TieredStopAtLevel=1"
+
+EXPOSE 8080
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
