@@ -1,6 +1,13 @@
 spring:
   application:
     name: worker
+  main:
+    lazy-initialization: true
+    web-application-type: none
+  backgroundpreinitializer:
+    ignore: true
+  jmx:
+    enabled: false
   kafka:
     bootstrap-servers: kafka:9092
     consumer:
@@ -18,6 +25,10 @@ spring:
       ack-mode: manual
 
 management:
+  defaults:
+    metrics:
+      export:
+        enabled: false
   endpoints:
     web:
       exposure:

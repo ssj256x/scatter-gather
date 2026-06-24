@@ -1,13 +1,26 @@
 spring:
   application:
     name: gatherer
+  main:
+    lazy-initialization: true
+  backgroundpreinitializer:
+    ignore: true
+  jmx:
+    enabled: false
   kafka:
     streams:
       application-id: gatherer
       bootstrap-servers: kafka:9092
       properties:
+        cache.max.bytes.buffering: 10485760
         processing.guarantee: exactly_once_v2
         default:
           key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
           value.serde: org.springframework.kafka.support.serializer.JsonSerde
           deserialization.exception.handler: org.apache.kafka.streams.errors.LogAndContinueExceptionHandler
+
+management:
+  defaults:
+    metrics:
+      export:
+        enabled: false

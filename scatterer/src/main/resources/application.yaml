@@ -1,6 +1,12 @@
 spring:
   application:
     name: scatterer
+  main:
+    lazy-initialization: true
+  backgroundpreinitializer:
+    ignore: true
+  jmx:
+    enabled: false
   kafka:
     bootstrap-servers: kafka:9092
     producer:
@@ -10,6 +16,10 @@ spring:
       ack-mode: manual
 
 management:
+  defaults:
+    metrics:
+      export:
+        enabled: false
   endpoints:
     web:
       exposure:
