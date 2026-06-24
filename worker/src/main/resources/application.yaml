@@ -1,9 +1,6 @@
 spring:
   application:
     name: worker
-  main:
-    lazy-initialization: true
-    web-application-type: none
   backgroundpreinitializer:
     ignore: true
   jmx:

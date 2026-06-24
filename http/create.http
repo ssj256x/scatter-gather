@@ -1,10 +1,10 @@
-# curl --location 'http://localhost:8081/create?random-ids=true&size=45'
+# curl --location 'http://localhost:8081/api/v1/scatter/create?random-ids=true&size=45'
 #      --header 'Content-Type: application/json'
 #      --data '{
 #          "activity": "RE_INDEX"
 #      }'
 
-@baseUrl = http://localhost:8081
+@baseUrl = http://localhost:8081/api/v1/scatter
 
 POST {{baseUrl}}/create?random-ids=true&size=45
 Content-Type: application/json

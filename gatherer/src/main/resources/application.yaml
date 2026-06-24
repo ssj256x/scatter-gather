@@ -1,8 +1,6 @@
 spring:
   application:
     name: gatherer
-  main:
-    lazy-initialization: true
   backgroundpreinitializer:
     ignore: true
   jmx:
