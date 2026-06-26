@@ -28,6 +28,9 @@ RUN mvn -pl gatherer -am clean package -DskipTests -Dmaven.javadoc.skip=true
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
+# Install libstdc++ for RocksDB
+RUN apk add --no-cache libstdc++
+
 # Create a non-privileged system user for runtime safety
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring

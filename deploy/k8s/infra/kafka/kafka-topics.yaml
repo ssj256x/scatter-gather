@@ -1,0 +1,32 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaTopic
+metadata:
+  name: batch-requests
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: scatter-gather-cluster
+spec:
+  partitions: 3
+  replicas: 1
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaTopic
+metadata:
+  name: batch-responses
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: scatter-gather-cluster
+spec:
+  partitions: 3
+  replicas: 1
+---
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaTopic
+metadata:
+  name: batch-aggregated
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: scatter-gather-cluster
+spec:
+  partitions: 3
+  replicas: 1
