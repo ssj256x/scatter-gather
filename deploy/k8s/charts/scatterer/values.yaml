@@ -1,0 +1,20 @@
+name: scatterer
+partOf: scatter-gather
+replicas: 1
+
+kafka:
+  bootstrapServer: scatter-gather-kafka-bootstrap:9092
+  externalName: scatter-gather-cluster-kafka-bootstrap.kafka.svc.cluster.local
+
+container:
+  port: 8080
+  portName: scatterer-port
+  image:
+    name: ssj256x/scatterer
+    tag: 0.0.1
+
+ingress:
+  host: scatterer.192.168.1.13.sslip.io
+
+service:
+  port: 80
