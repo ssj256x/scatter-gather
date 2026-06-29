@@ -1,0 +1,8 @@
+apiVersion: v2
+name: kafka-infra-bridge
+description: Shared cluster-wide network bridges for Kafka platform
+version: 1.0.0
+keywords:
+  - infra
+  - kafka
+  - scatter-gather

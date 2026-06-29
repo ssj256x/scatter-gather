@@ -1,13 +1,13 @@
 apiVersion: v2
-name: scatterer
+name: gatherer
 version: 1.0.0
-description: A simple Java Microservice that scatters a requests into a batches and publishes them into a Kafka Topic.
+description: A simple Java Microservice that aggregates data from Kafka and publishes them to a Kafka topic.
 appVersion: "0.0.1"
 keywords:
   - java
   - microservice
   - scatter-gather
-  - kafka-producer
+  - kafka-consumer
 dependencies:
   - name: java-microservice
     version: 0.0.1

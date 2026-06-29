@@ -1,0 +1,5 @@
+apiVersion: v2
+name: java-microservice
+description: A master template library chart for Java Spring Boot microservices
+version: 0.0.1
+appVersion: "1.0.0"

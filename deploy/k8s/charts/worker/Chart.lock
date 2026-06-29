@@ -1,0 +1,6 @@
+dependencies:
+- name: java-microservice
+  repository: file://../java-microservice
+  version: 0.0.1
+digest: sha256:feb284e94222dd6a3009aef1e387abed84d43ec8ee6c80ba96e1a0465f01c28b
+generated: "2026-06-29T23:23:18.068147+05:30"

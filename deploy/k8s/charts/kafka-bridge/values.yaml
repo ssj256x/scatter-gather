@@ -1,0 +1,4 @@
+partOf: scatter-gather
+
+kafka:
+  externalName: scatter-gather-cluster-kafka-bootstrap.kafka.svc.cluster.local

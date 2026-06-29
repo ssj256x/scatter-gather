@@ -1,5 +1,5 @@
 java-microservice:
-  name: scatterer
+  name: worker
   partOf: scatter-gather
   replicas: 1
 
@@ -8,15 +8,15 @@ java-microservice:
 
   container:
     port: 8080
-    portName: scatterer-port
+    portName: worker-port
     image:
-      name: ssj256x/scatterer
+      name: ssj256x/worker
       tag: 0.0.1
 
   ingress:
-    enabled: true
-    host: scatterer.192.168.1.13.sslip.io
+    enabled: false
+    host: worker.192.168.1.13.sslip.io
 
   service:
-    enabled: true
+    enabled: false
     port: 80

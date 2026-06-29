@@ -27,3 +27,6 @@ hs_err_pid*
 replay_pid*
 
 manifest.yaml
+
+# Ignore compiled Helm dependency artifacts
+deploy/k8s/charts/*/charts/*.tgz
