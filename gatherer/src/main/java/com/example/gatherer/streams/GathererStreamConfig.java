@@ -45,6 +45,7 @@ public class GathererStreamConfig {
                                 .withValueSerde(aggregatedResultSerde)
                 )
                 .toStream()
+                .filter((key, value) -> value.getStatus().equals("COMPLETED"))
                 .to("batch-aggregated",
                         Produced.with(Serdes.String(), aggregatedResultSerde));
 

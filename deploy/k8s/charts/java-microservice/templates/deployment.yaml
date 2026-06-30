@@ -24,12 +24,15 @@ spec:
           env:
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
               value: {{ .Values.kafka.bootstrapServer | trim | quote }}
+            - name: SPRING_KAFKA_STREAMS_BOOTSTRAP_SERVERS
+              value: {{ .Values.kafka.bootstrapServer | trim | quote }}
           startupProbe:
             httpGet:
               path: /actuator/health/liveness
               port: {{ .Values.container.portName }}
             initialDelaySeconds: 15
-            periodSeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
             failureThreshold: 12
           livenessProbe:
             httpGet:

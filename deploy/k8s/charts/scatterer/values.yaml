@@ -4,7 +4,7 @@ java-microservice:
   replicas: 1
 
   kafka:
-    bootstrapServer: scatter-gather-kafka-bootstrap:9092
+    bootstrapServer: kafka-bridge:9092
 
   container:
     port: 8080
